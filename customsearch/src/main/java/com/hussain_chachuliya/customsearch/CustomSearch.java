@@ -3,6 +3,7 @@ package com.hussain_chachuliya.customsearch;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,6 +55,11 @@ public class CustomSearch extends AppCompatActivity implements SearchAdapter.ITe
 
     public static void start(Activity activity, List<String> data, int requestCode) {
         activity.startActivityForResult(new Intent(activity, CustomSearch.class), requestCode);
+        allData = data;
+    }
+
+    public static void start(Fragment fragment, List<String> data, int requestCode) {
+        fragment.startActivityForResult(new Intent(fragment.getActivity(), CustomSearch.class), requestCode);
         allData = data;
     }
 
