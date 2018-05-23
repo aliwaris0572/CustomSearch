@@ -90,4 +90,10 @@ public class DemoFragment extends Fragment {
         data.add("zjj");
         return data;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        SearchAdapterHolder.getInstance().removeAdapter(REQ_CODE);
+    }
 }

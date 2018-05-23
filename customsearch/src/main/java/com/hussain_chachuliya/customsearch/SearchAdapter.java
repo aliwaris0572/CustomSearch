@@ -106,7 +106,6 @@ class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.viewHolder> imple
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     customSearchListener.getSelectedText(txtRow.getText().toString());
                 }
             });

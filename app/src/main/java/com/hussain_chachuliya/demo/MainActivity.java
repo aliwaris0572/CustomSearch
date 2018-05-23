@@ -85,4 +85,11 @@ public class MainActivity extends AppCompatActivity {
         data.add("zjj");
         return data;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SearchAdapterHolder.getInstance().removeAdapter(REQ_CODE);
+        SearchAdapterHolder.getInstance().removeAdapter(REQ_CODE_2);
+    }
 }
