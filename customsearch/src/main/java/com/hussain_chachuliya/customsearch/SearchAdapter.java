@@ -1,6 +1,5 @@
 package com.hussain_chachuliya.customsearch;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,19 +12,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.viewHolder> implements Filterable {
+class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.viewHolder> implements Filterable {
     private List<String> data;
     private List<String> allData;
-    private Context context;
+    private int requestCode;
 
-    private ITextChangedListener listener;
+    private ICustomSearch customSearchListener;
 
-    SearchAdapter(Context context, List<String> data) {
-        this.context = context;
+    public SearchAdapter(List<String> data, int requestCode) {
         this.data = data;
         // Used for restoring all items.
         this.allData = data;
-        listener = (ITextChangedListener) context;
+        this.requestCode = requestCode;
     }
 
     @Override
@@ -66,7 +64,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.viewHolder
             FilterResults results = new FilterResults();
 
             //Implement filter logic
-            // if edittext is null return the actual list
+            // if editText is null return the actual list
             if (constraint == null || constraint.length() == 0) {
                 //No need for filter
                 results.values = allData;
@@ -74,7 +72,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.viewHolder
 
             } else {
                 //Need Filter
-                // it matches the text  entered in the edittext and set the data in adapter list
+                // it matches the text  entered in the editText and set the data in adapter list
                 ArrayList<String> fRecords = new ArrayList<>();
 
                 for (String s : allData) {
@@ -91,33 +89,43 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.viewHolder
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
 
-            //it set the data from filter to adapter list and refresh the recyclerview adapter
+            //it set the data from filter to adapter list and refresh the recyclerView adapter
             data = (List<String>) results.values;
             notifyDataSetChanged();
-            listener.searchItemsCount(data.size());
+            customSearchListener.searchItemsCount(data.size());
         }
     }
 
     class viewHolder extends RecyclerView.ViewHolder {
         TextView txtRow;
 
-        viewHolder(final View itemview) {
-            super(itemview);
-            txtRow = itemview.findViewById(R.id.list_view);
+        viewHolder(final View itemView) {
+            super(itemView);
+            txtRow = itemView.findViewById(R.id.list_view);
 
-            itemview.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.getSelectedText(txtRow.getText().toString());
+
+                    customSearchListener.getSelectedText(txtRow.getText().toString());
                 }
             });
         }
     }
 
-    interface ITextChangedListener {
+    public int getRequestCode() {
+        return requestCode;
+    }
+
+    public void setCustomSearchListener(ICustomSearch iCustomSearch) {
+        this.customSearchListener = iCustomSearch;
+    }
+
+    interface ICustomSearch {
         void getSelectedText(String content);
 
         void searchItemsCount(int count);
     }
+
 }
 

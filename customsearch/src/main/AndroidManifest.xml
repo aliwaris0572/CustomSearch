@@ -4,6 +4,8 @@
 
     <application>
         <activity android:name=".CustomSearch"
+            android:label="@string/lbl_search"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 

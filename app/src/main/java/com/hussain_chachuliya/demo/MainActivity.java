@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.hussain_chachuliya.customsearch.CustomSearch;
+import com.hussain_chachuliya.customsearch.SearchAdapterHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +25,21 @@ public class MainActivity extends AppCompatActivity {
 
         etDemo = findViewById(R.id.etDemo);
         etDemo2 = findViewById(R.id.etDemo2);
+
+        SearchAdapterHolder.getInstance().addAdapter(getListOfStrings(), REQ_CODE);
+        SearchAdapterHolder.getInstance().addAdapter(getListOfStrings(), REQ_CODE_2);
+
         etDemo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomSearch.start(MainActivity.this, getListOfStrings(), REQ_CODE);
+                CustomSearch.start(MainActivity.this, REQ_CODE);
             }
         });
 
         etDemo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomSearch.start(MainActivity.this, getListOfStrings(), REQ_CODE_2);
+                CustomSearch.start(MainActivity.this, REQ_CODE_2);
             }
         });
     }

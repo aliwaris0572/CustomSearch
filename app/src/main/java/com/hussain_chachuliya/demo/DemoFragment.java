@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.hussain_chachuliya.customsearch.CustomSearch;
+import com.hussain_chachuliya.customsearch.SearchAdapterHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +35,15 @@ public class DemoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_blank, container, false);
+        View v = inflater.inflate(R.layout.fragment_blank, container, false);
+
+        SearchAdapterHolder.getInstance().addAdapter(getListOfStrings(), REQ_CODE);
 
         etFrag = v.findViewById(R.id.etFrag);
         etFrag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomSearch.start(DemoFragment.this, getListOfStrings(), REQ_CODE);
+                CustomSearch.start(DemoFragment.this, REQ_CODE);
             }
         });
 
