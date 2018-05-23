@@ -44,7 +44,6 @@ public class CustomSearch extends AppCompatActivity implements SearchAdapter.ICu
         rv.setAdapter(searchAdapter);
 
         EditText txtSearch = findViewById(R.id.txtSearch);
-        if (searchAdapter == null) return;
         searchAdapter.getFilter().filter(txtSearch.getText());
         txtSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -71,13 +70,18 @@ public class CustomSearch extends AppCompatActivity implements SearchAdapter.ICu
     }
 
     public static void start(Activity activity, int requestCode) {
-        activity.startActivityForResult(new Intent(activity, CustomSearch.class), requestCode);
-        REQUEST_CODE = requestCode;
+        if(SearchAdapterHolder.getInstance().getAdapter(requestCode) != null) {
+            activity.startActivityForResult(new Intent(activity, CustomSearch.class), requestCode);
+            REQUEST_CODE = requestCode;
+        }
+
     }
 
     public static void start(Fragment fragment, int requestCode) {
-        fragment.startActivityForResult(new Intent(fragment.getActivity(), CustomSearch.class), requestCode);
-        REQUEST_CODE = requestCode;
+        if(SearchAdapterHolder.getInstance().getAdapter(requestCode) != null) {
+            fragment.startActivityForResult(new Intent(fragment.getActivity(), CustomSearch.class), requestCode);
+            REQUEST_CODE = requestCode;
+        }
     }
 
     private void hideKeyboard(Activity activity) {

@@ -22,6 +22,10 @@ public class SearchAdapterHolder {
         this.adapters.put(requestCode, new SearchAdapter(data, requestCode));
     }
 
+    public SearchAdapter getAdapter(int requestCode){
+        return adapters.get(requestCode);
+    }
+
     public void removeAdapter(int requestCode) {
         this.adapters.remove(requestCode);
     }
