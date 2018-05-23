@@ -44,6 +44,7 @@ public class CustomSearch extends AppCompatActivity implements SearchAdapter.ICu
         rv.setAdapter(searchAdapter);
 
         EditText txtSearch = findViewById(R.id.txtSearch);
+        if (searchAdapter == null) return;
         searchAdapter.getFilter().filter(txtSearch.getText());
         txtSearch.addTextChangedListener(new TextWatcher() {
             @Override
