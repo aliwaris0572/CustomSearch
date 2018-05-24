@@ -19,7 +19,7 @@ class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.viewHolder> imple
 
     private ICustomSearch customSearchListener;
 
-    public SearchAdapter(List<String> data, int requestCode) {
+    SearchAdapter(List<String> data, int requestCode) {
         this.data = data;
         // Used for restoring all items.
         this.allData = data;
