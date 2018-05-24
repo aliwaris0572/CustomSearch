@@ -18,6 +18,7 @@ import android.widget.EditText;
 
 public class CustomSearch extends AppCompatActivity implements SearchAdapter.ICustomSearch {
     private SearchAdapter searchAdapter;
+    private static SearchAdapterHolder adapterHolder;
     private RecyclerView rv;
     private static int REQUEST_CODE;
     public static final String CUSTOM_SEARCH_TEXT = "text";
@@ -31,7 +32,7 @@ public class CustomSearch extends AppCompatActivity implements SearchAdapter.ICu
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        for (SearchAdapter adapter : SearchAdapterHolder.getInstance().getAdapters().values()) {
+        for (SearchAdapter adapter : adapterHolder.getAdapters().values()) {
             if (adapter.getRequestCode() == REQUEST_CODE) {
                 searchAdapter = adapter;
                 searchAdapter.setCustomSearchListener(this);
@@ -69,16 +70,18 @@ public class CustomSearch extends AppCompatActivity implements SearchAdapter.ICu
         return super.onOptionsItemSelected(menuItem);
     }
 
-    public static void start(Activity activity, int requestCode) {
-        if(SearchAdapterHolder.getInstance().getAdapter(requestCode) != null) {
+    public static void start(Activity activity, int requestCode, SearchAdapterHolder holder) {
+        if(holder.getAdapter(requestCode) != null) {
+            adapterHolder = holder;
             activity.startActivityForResult(new Intent(activity, CustomSearch.class), requestCode);
             REQUEST_CODE = requestCode;
         }
 
     }
 
-    public static void start(Fragment fragment, int requestCode) {
-        if(SearchAdapterHolder.getInstance().getAdapter(requestCode) != null) {
+    public static void start(Fragment fragment, int requestCode, SearchAdapterHolder holder) {
+        if(holder.getAdapter(requestCode) != null) {
+            adapterHolder = holder;
             fragment.startActivityForResult(new Intent(fragment.getActivity(), CustomSearch.class), requestCode);
             REQUEST_CODE = requestCode;
         }

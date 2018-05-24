@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.hussain_chachuliya.customsearch.CustomSearch;
@@ -14,21 +13,19 @@ import com.hussain_chachuliya.customsearch.SearchAdapterHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
     private final int REQ_CODE = 1;
     private final int REQ_CODE_2 = 2;
     EditText etDemo, etDemo2;
-    Button next;
     SearchAdapterHolder holder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         etDemo = findViewById(R.id.etDemo);
         etDemo2 = findViewById(R.id.etDemo2);
-        next = findViewById(R.id.next);
 
         holder = new SearchAdapterHolder();
         holder.addAdapter(getListOfStrings(), REQ_CODE);
@@ -37,21 +34,14 @@ public class MainActivity extends AppCompatActivity {
         etDemo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomSearch.start(MainActivity.this, REQ_CODE, holder);
+                CustomSearch.start(SecondActivity.this, REQ_CODE, holder);
             }
         });
 
         etDemo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomSearch.start(MainActivity.this, REQ_CODE_2, holder);
-            }
-        });
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SecondActivity.class));
+                CustomSearch.start(SecondActivity.this, REQ_CODE_2, holder);
             }
         });
     }

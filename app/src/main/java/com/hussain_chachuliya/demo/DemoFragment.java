@@ -21,6 +21,7 @@ import static android.app.Activity.RESULT_OK;
 public class DemoFragment extends Fragment {
     EditText etFrag;
     private final int REQ_CODE = 55;
+    SearchAdapterHolder holder;
 
     public DemoFragment() {
         // Required empty public constructor
@@ -37,13 +38,14 @@ public class DemoFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_blank, container, false);
 
-        SearchAdapterHolder.getInstance().addAdapter(getListOfStrings(), REQ_CODE);
+        holder = new SearchAdapterHolder();
+        holder.addAdapter(getListOfStrings(), REQ_CODE);
 
         etFrag = v.findViewById(R.id.etFrag);
         etFrag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomSearch.start(DemoFragment.this, REQ_CODE);
+                CustomSearch.start(DemoFragment.this, REQ_CODE, holder);
             }
         });
 
@@ -94,6 +96,6 @@ public class DemoFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        SearchAdapterHolder.getInstance().removeAdapter(REQ_CODE);
+        holder.removeAdapter(REQ_CODE);
     }
 }
