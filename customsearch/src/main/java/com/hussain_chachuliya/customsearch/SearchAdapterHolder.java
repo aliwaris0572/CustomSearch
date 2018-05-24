@@ -7,10 +7,10 @@ import java.util.List;
 public class SearchAdapterHolder {
 
     private static SearchAdapterHolder holder;
-    private HashMap<Integer, SearchAdapter> adapters;
-    
+    private HashMap<Integer, SearchAdapter> searchAdapters;
+
     private SearchAdapterHolder() {
-        this.adapters = new HashMap<>();
+        this.searchAdapters = new HashMap();
     }
 
     public static SearchAdapterHolder getInstance() {
@@ -21,18 +21,18 @@ public class SearchAdapterHolder {
     }
 
     public void addAdapter(List<String> data, int requestCode) {
-        this.adapters.put(requestCode, new SearchAdapter(data, requestCode));
+        this.searchAdapters.put(requestCode, new SearchAdapter(data, requestCode));
     }
 
     public SearchAdapter getAdapter(int requestCode){
-        return adapters.get(requestCode);
+        return searchAdapters.get(requestCode);
     }
 
     public void removeAdapter(int requestCode) {
-        this.adapters.remove(requestCode);
+        this.searchAdapters.remove(requestCode);
     }
 
     public HashMap<Integer, SearchAdapter> getAdapters() {
-        return adapters;
+        return searchAdapters;
     }
 }
