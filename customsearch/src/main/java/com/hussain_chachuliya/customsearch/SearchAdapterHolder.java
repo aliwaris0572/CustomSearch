@@ -7,10 +7,10 @@ import java.util.List;
 public class SearchAdapterHolder {
 
     private static SearchAdapterHolder holder;
-    private HashMap<Integer, SearchAdapter> searchAdapters = null;
+    private HashMap<Integer, SearchAdapter> searchAdapters;
 
     private SearchAdapterHolder() {
-        searchAdapters = new HashMap<>();
+        this.searchAdapters = new HashMap();
     }
 
     public static SearchAdapterHolder getInstance() {
