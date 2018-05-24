@@ -1,6 +1,5 @@
 package com.hussain_chachuliya.customsearch;
 
-import android.annotation.SuppressLint;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,10 +8,9 @@ public class SearchAdapterHolder {
 
     private static SearchAdapterHolder holder;
     private HashMap<Integer, SearchAdapter> adapters;
-
-    @SuppressLint("UseSparseArrays")
+    
     private SearchAdapterHolder() {
-        adapters = new HashMap<>();
+        this.adapters = new HashMap<>();
     }
 
     public static SearchAdapterHolder getInstance() {
