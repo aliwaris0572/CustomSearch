@@ -30,3 +30,5 @@ Then, add this in you app level build.gradle
 |  ![enter image description here](https://ptpb.pw/Uzr2.png)| ![enter image description here](https://ptpb.pw/ycV8.png) |
 |--|--|
 
+## Contributors
+ 1.  [maaudrana](https://github.com/maaudrana) - PR #[2](https://github.com/aliwaris0572/CustomSearch/pull/2)
