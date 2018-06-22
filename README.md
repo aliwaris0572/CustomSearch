@@ -2,6 +2,7 @@
 
 
 [![](https://jitpack.io/v/aliwaris0572/CustomSearch.svg)](https://jitpack.io/#aliwaris0572/CustomSearch)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Custom%20Search-red.svg?style=flat)](https://android-arsenal.com/details/1/6970)
 
 # CustomSearch
 Allows user to search easily through a list of String.
